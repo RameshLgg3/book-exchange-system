@@ -64,7 +64,7 @@ exports.register = function (req, res) {
     // Save user to database
     db.query(
       "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
-      [email, hashedPassword],
+      [name, email, hashedPassword],
       (err, result) => {
         if (err) {
           return res
