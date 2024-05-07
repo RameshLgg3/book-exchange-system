@@ -34,7 +34,7 @@ exports.createBook = function (req, res) {
 
   Book.createBook(newBook, (err, result) => {
     if (err) {
-      return res.status(500).json({ message: "Internal server error" });
+      return res.status(500).json({ message: "Internal server error" + err });
     }
     res
       .status(201)
