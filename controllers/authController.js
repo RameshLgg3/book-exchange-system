@@ -46,10 +46,10 @@ exports.login = function (req, res) {
 };
 
 exports.register = function (req, res) {
-  const { email, password } = req.body;
+  const { name, email, password } = req.body;
 
   // Check if email and password are provided
-  if (!email || !password) {
+  if (!name || !email || !password) {
     return res
       .status(400)
       .json({ message: "Username and password are required" });
@@ -63,7 +63,7 @@ exports.register = function (req, res) {
 
     // Save user to database
     db.query(
-      "INSERT INTO users (email, password) VALUES (?, ?)",
+      "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
       [email, hashedPassword],
       (err, result) => {
         if (err) {
