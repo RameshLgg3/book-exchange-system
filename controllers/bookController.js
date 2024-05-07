@@ -9,59 +9,96 @@ exports.getAllBooks = function (req, res) {
   });
 };
 
-exports.getBookById = function (req, res) {
-  // Implement logic to fetch an book by ID
+exports.createBook = function (req, res) {
+  const {
+    user_id,
+    title,
+    description,
+    author,
+    genre,
+    book_condition,
+    availability_status,
+    book_type,
+  } = req.body;
+
+  const newBook = {
+    user_id: user_id,
+    title: title,
+    description: description,
+    author: author,
+    genre: genre,
+    book_condition: book_condition,
+    availability_status: availability_status,
+    book_type: book_type,
+  };
+
+  Book.createBook(newBook, (err, result) => {
+    if (err) {
+      return res.status(500).json({ message: "Internal server error" });
+    }
+    res
+      .status(201)
+      .json({ message: "Book created successfully", id: result.insertId });
+  });
 };
 
-exports.createBook = function (req, res) {
-  Book.createBook = function (req, res) {
-    const {
-      user_id,
-      title,
-      description,
-      author,
-      genre,
-      book_condition,
-      availability_status,
-      book_type,
-    } = req.body;
+exports.getBookById = function (req, res) {
+  const bookId = req.params.id;
 
-    // Check if all required fields are provided
-    if (!user_id || !title || !author) {
-      return res
-        .status(400)
-        .json({ message: "User ID, title, and author are required fields" });
+  Book.getBookById(bookId, (err, book) => {
+    if (err) {
+      return res.status(500).json({ message: "Internal server error" });
     }
-
-    // Save book to database
-    db.query(
-      "INSERT INTO books (user_id, title, description, author, genre, book_condition, availability_status, book_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-      [
-        user_id,
-        title,
-        description,
-        author,
-        genre,
-        book_condition,
-        availability_status,
-        book_type,
-      ],
-      (err, result) => {
-        if (err) {
-          return res.status(500).json({ message: "Internal server error" });
-        }
-        res
-          .status(201)
-          .json({ message: "Book created successfully", id: result.insertId });
-      }
-    );
-  };
+    if (!book) {
+      return res.status(404).json({ message: "Book not found" });
+    }
+    res.status(200).json(book);
+  });
 };
 
 exports.updateBook = function (req, res) {
-  // Implement logic to update an book by ID
+  const bookId = req.params.id;
+  const {
+    title,
+    description,
+    author,
+    genre,
+    book_condition,
+    availability_status,
+    book_type,
+  } = req.body;
+
+  const updatedBook = {
+    title: title,
+    description: description,
+    author: author,
+    genre: genre,
+    book_condition: book_condition,
+    availability_status: availability_status,
+    book_type: book_type,
+  };
+
+  Book.updateBook(bookId, updatedBook, (err, result) => {
+    if (err) {
+      return res.status(500).json({ message: "Internal server error" });
+    }
+    if (!result) {
+      return res.status(404).json({ message: "Book not found" });
+    }
+    res.status(200).json({ message: "Book updated successfully" });
+  });
 };
 
 exports.deleteBook = function (req, res) {
-  // Implement logic to delete an book by ID
+  const bookId = req.params.id;
+
+  Book.deleteBook(bookId, (err, result) => {
+    if (err) {
+      return res.status(500).json({ message: "Internal server error" });
+    }
+    if (!result) {
+      return res.status(404).json({ message: "Book not found" });
+    }
+    res.status(200).json({ message: "Book deleted successfully" });
+  });
 };
