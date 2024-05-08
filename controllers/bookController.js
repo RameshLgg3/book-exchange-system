@@ -19,6 +19,7 @@ exports.createBook = function (req, res) {
     book_condition,
     availability_status,
     book_type,
+    image_url,
   } = req.body;
 
   const newBook = {
@@ -30,6 +31,7 @@ exports.createBook = function (req, res) {
     book_condition: book_condition,
     availability_status: availability_status,
     book_type: book_type,
+    image_url: image_url,
   };
 
   Book.createBook(newBook, (err, result) => {
@@ -66,6 +68,7 @@ exports.updateBook = function (req, res) {
     book_condition,
     availability_status,
     book_type,
+    image_url,
   } = req.body;
 
   const updatedBook = {
@@ -76,6 +79,7 @@ exports.updateBook = function (req, res) {
     book_condition: book_condition,
     availability_status: availability_status,
     book_type: book_type,
+    image_url: image_url,
   };
 
   Book.updateBook(bookId, updatedBook, (err, result) => {
