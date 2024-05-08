@@ -17,9 +17,10 @@ const Book = {
       book_condition,
       availability_status,
       book_type,
+      image_url,
     } = newBook;
     return db.query(
-      "INSERT INTO books (user_id, title, description, author, genre, book_condition, availability_status, book_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+      "INSERT INTO books (user_id, title, description, author, genre, book_condition, availability_status, book_type, image_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
       [
         user_id,
         title,
@@ -29,6 +30,7 @@ const Book = {
         book_condition,
         availability_status,
         book_type,
+        image_url,
       ],
       callback
     );
@@ -42,9 +44,10 @@ const Book = {
       book_condition,
       availability_status,
       book_type,
+      image_url,
     } = updatedBook;
     return db.query(
-      "UPDATE books SET title = ?, description = ?, author = ?, genre = ?, book_condition = ?, availability_status = ?, book_type = ? WHERE id = ?",
+      "UPDATE books SET title = ?, description = ?, author = ?, genre = ?, book_condition = ?, availability_status = ?, book_type = ?, image_url = ? WHERE id = ?",
       [
         title,
         description,
@@ -53,6 +56,7 @@ const Book = {
         book_condition,
         availability_status,
         book_type,
+        image_url,
         id,
       ],
       callback
