@@ -38,27 +38,27 @@ app.delete(
 app.get(
   "/api/exchange-requests",
   authMiddleware.verifyToken,
-  exchangeRequestController.getAllBooks
+  exchangeRequestController.getAllExchangeRequests
 );
 app.get(
   "/api/exchange-requests/:id",
   authMiddleware.verifyToken,
-  exchangeRequestController.getBookById
+  exchangeRequestController.getExchangeRequestById
 );
 app.post(
   "/api/exchange-requests",
   authMiddleware.verifyToken,
-  exchangeRequestController.createBook
+  exchangeRequestController.createExchangeRequest
 );
 app.put(
   "/api/exchange-requests/:id",
   authMiddleware.verifyToken,
-  exchangeRequestController.updateBook
+  exchangeRequestController.updateExchangeRequest
 );
 app.delete(
   "/api/exchange-requests/:id",
   authMiddleware.verifyToken,
-  exchangeRequestController.deleteBook
+  exchangeRequestController.deleteExchangeRequest
 );
 
 app.listen(port, () => {

@@ -58,25 +58,23 @@ exports.getExchangeRequestById = function (req, res) {
 exports.updateExchangeRequest = function (req, res) {
   const bookId = req.params.id;
   const {
-    title,
-    description,
-    author,
-    genre,
-    book_condition,
-    availability_status,
-    book_type,
-    image_url,
+    book_id: book_id,
+    user_id: user_id,
+    request_type: request_type,
+    delivery_method: delivery_method,
+    duration: duration,
+    comments: comments,
+    status: status,
   } = req.body;
 
   const updatedExchangeRequest = {
-    title: title,
-    description: description,
-    author: author,
-    genre: genre,
-    book_condition: book_condition,
-    availability_status: availability_status,
-    book_type: book_type,
-    image_url: image_url,
+    book_id: book_id,
+    user_id: user_id,
+    request_type: request_type,
+    delivery_method: delivery_method,
+    duration: duration,
+    comments: comments,
+    status: status,
   };
 
   ExchangeRequest.updateExchangeRequest(
