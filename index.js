@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const authController = require("./controllers/authController");
 const bookController = require("./controllers/bookController");
 const authMiddleware = require("./middlewares/authMiddleware");
+const exchangeRequestController = require("./controllers/exchangeRequestController");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -31,6 +32,33 @@ app.delete(
   "/api/books/:id",
   authMiddleware.verifyToken,
   bookController.deleteBook
+);
+
+// Exchange requests Routes (protected)
+app.get(
+  "/api/exchange-requests",
+  authMiddleware.verifyToken,
+  exchangeRequestController.getAllBooks
+);
+app.get(
+  "/api/exchange-requests/:id",
+  authMiddleware.verifyToken,
+  exchangeRequestController.getBookById
+);
+app.post(
+  "/api/exchange-requests",
+  authMiddleware.verifyToken,
+  exchangeRequestController.createBook
+);
+app.put(
+  "/api/exchange-requests/:id",
+  authMiddleware.verifyToken,
+  exchangeRequestController.updateBook
+);
+app.delete(
+  "/api/exchange-requests/:id",
+  authMiddleware.verifyToken,
+  exchangeRequestController.deleteBook
 );
 
 app.listen(port, () => {
