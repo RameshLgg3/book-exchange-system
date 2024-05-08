@@ -94,7 +94,7 @@ exports.deleteBook = function (req, res) {
 
   Book.deleteBook(bookId, (err, result) => {
     if (err) {
-      return res.status(500).json({ message: "Internal server error" });
+      return res.status(500).json({ message: "Internal server error" + err });
     }
     if (!result) {
       return res.status(404).json({ message: "Book not found" });
