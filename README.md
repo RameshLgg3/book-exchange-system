@@ -22,6 +22,9 @@ The book exchange platform should provide users with a convenient and efficient 
 - MySQL
 - React
 
+## Deployment
+Application is hosted on https://www.heroku.com
+
 ## Team
 - KOLAMALA RAMESH (2023mt93294@wilp.bits-pilani.ac.in)
 - AKSHARA ANILKUMAR (2023mt93286@wilp.bits-pilani.ac.in)
