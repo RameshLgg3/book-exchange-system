@@ -26,7 +26,7 @@ The book exchange platform should provide users with a convenient and efficient 
 Application is hosted on https://www.heroku.com
 
 ## Team
-- KOLAMALA RAMESH (2023mt93294@wilp.bits-pilani.ac.in)
-- AKSHARA ANILKUMAR (2023mt93286@wilp.bits-pilani.ac.in)
-- PRAJWAL MODAK (2023mt93295@wilp.bits-pilani.ac.in)
-- UJJWAL DEY (2023mt93290@wilp.bits-pilani.ac.in)
+- KOLAMALA RAMESH
+- AKSHARA ANILKUMAR
+- PRAJWAL MODAK
+- UJJWAL DEY
