@@ -4,6 +4,7 @@ const authController = require("./controllers/authController");
 const bookController = require("./controllers/bookController");
 const authMiddleware = require("./middlewares/authMiddleware");
 const exchangeRequestController = require("./controllers/exchangeRequestController");
+const messageController = require("./controllers/messageController");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -64,6 +65,28 @@ app.delete(
   "/api/exchange-requests/:id",
   authMiddleware.verifyToken,
   exchangeRequestController.deleteExchangeRequest
+);
+
+// Messages Routes (protected)
+app.get(
+  "/api/messages",
+  authMiddleware.verifyToken,
+  messageController.getAllMessages
+);
+app.get(
+  "/api/messages/:id",
+  authMiddleware.verifyToken,
+  messageController.getMessageById
+);
+app.post(
+  "/api/messages",
+  authMiddleware.verifyToken,
+  messageController.createMessage
+);
+app.delete(
+  "/api/messages/:id",
+  authMiddleware.verifyToken,
+  messageController.deleteMessage
 );
 
 app.listen(port, () => {
