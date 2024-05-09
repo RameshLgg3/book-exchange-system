@@ -42,9 +42,9 @@ exports.createExchangeRequest = function (req, res) {
 };
 
 exports.getExchangeRequestById = function (req, res) {
-  const bookId = req.params.id;
+  const exchangeRequestId = req.params.id;
 
-  ExchangeRequest.getExchangeRequestById(bookId, (err, book) => {
+  ExchangeRequest.getExchangeRequestById(exchangeRequestId, (err, book) => {
     if (err) {
       return res.status(500).json({ message: "Internal server error" });
     }
@@ -56,7 +56,7 @@ exports.getExchangeRequestById = function (req, res) {
 };
 
 exports.updateExchangeRequest = function (req, res) {
-  const bookId = req.params.id;
+  const exchangeRequestId = req.params.id;
   const {
     book_id: book_id,
     user_id: user_id,
@@ -78,7 +78,7 @@ exports.updateExchangeRequest = function (req, res) {
   };
 
   ExchangeRequest.updateExchangeRequest(
-    bookId,
+    exchangeRequestId,
     updatedExchangeRequest,
     (err, result) => {
       if (err) {
@@ -93,9 +93,9 @@ exports.updateExchangeRequest = function (req, res) {
 };
 
 exports.deleteExchangeRequest = function (req, res) {
-  const bookId = req.params.id;
+  const exchangeRequestId = req.params.id;
 
-  ExchangeRequest.deleteExchangeRequest(bookId, (err, result) => {
+  ExchangeRequest.deleteExchangeRequest(exchangeRequestId, (err, result) => {
     if (err) {
       return res.status(500).json({ message: "Internal server error" + err });
     }
@@ -103,5 +103,20 @@ exports.deleteExchangeRequest = function (req, res) {
       return res.status(404).json({ message: "ExchangeRequest not found" });
     }
     res.status(200).json({ message: "ExchangeRequest deleted successfully" });
+  });
+};
+
+exports.getTransactions = function (req, res) {
+  const userId = req.params.user_id;
+  const status = req.params.status;
+
+  ExchangeRequest.getTransactions(userId, status, (err, book) => {
+    if (err) {
+      return res.status(500).json({ message: "Internal server error" });
+    }
+    if (!book) {
+      return res.status(404).json({ message: "ExchangeRequest not found" });
+    }
+    res.status(200).json(book);
   });
 };

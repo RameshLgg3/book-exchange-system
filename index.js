@@ -66,6 +66,11 @@ app.delete(
   authMiddleware.verifyToken,
   exchangeRequestController.deleteExchangeRequest
 );
+app.get(
+  "/api/exchange-requests/:user_id/:status",
+  authMiddleware.verifyToken,
+  exchangeRequestController.getTransactions
+);
 
 // Messages Routes (protected)
 app.get(

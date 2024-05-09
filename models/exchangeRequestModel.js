@@ -67,6 +67,13 @@ const ExchangeRequest = {
       callback
     );
   },
+  getTransactions: function (userId, status, callback) {
+    return db.query(
+      "SELECT * FROM exchange_requests WHERE user_id = ? and status = ?",
+      [userId, status],
+      callback
+    );
+  },
 };
 
 module.exports = ExchangeRequest;
