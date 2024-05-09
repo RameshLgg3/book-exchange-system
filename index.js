@@ -33,6 +33,11 @@ app.delete(
   authMiddleware.verifyToken,
   bookController.deleteBook
 );
+app.post(
+  "/api/books/search",
+  authMiddleware.verifyToken,
+  bookController.searchBooks
+);
 
 // Exchange requests Routes (protected)
 app.get(

@@ -65,6 +65,14 @@ const Book = {
   deleteBook: function (id, callback) {
     return db.query("DELETE FROM books WHERE id = ?", [id], callback);
   },
+  searchBooks: function (searchCriteria, callback) {
+    const { title, description, author, genre } = searchCriteria;
+    return db.query(
+      "SELECT * FROM books where id = 1",
+      [title, description, author, genre],
+      callback
+    );
+  },
 };
 
 module.exports = Book;

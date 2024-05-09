@@ -106,3 +106,21 @@ exports.deleteBook = function (req, res) {
     res.status(200).json({ message: "Book deleted successfully" });
   });
 };
+
+exports.searchBooks = function (req, res) {
+  const { title, description, author, genre } = req.body;
+
+  const searchCriteria = {
+    title: title,
+    description: description,
+    author: author,
+    genre: genre,
+  };
+
+  Book.searchBooks(searchCriteria, (err, result) => {
+    if (err) {
+      return res.status(500).json({ message: "Internal server error" + err });
+    }
+    res.status(200).json({ books: result });
+  });
+};
