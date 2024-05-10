@@ -23,7 +23,7 @@ The book exchange platform should provide users with a convenient and efficient 
 - React
 
 ## Deployment
-Application is hosted on https://www.heroku.com
+Application is deployed on https://www.heroku.com
 
 ## Team
 - KOLAMALA RAMESH
