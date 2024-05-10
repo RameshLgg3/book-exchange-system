@@ -5,6 +5,7 @@ const bookController = require("./controllers/bookController");
 const authMiddleware = require("./middlewares/authMiddleware");
 const exchangeRequestController = require("./controllers/exchangeRequestController");
 const messageController = require("./controllers/messageController");
+const userProfileController = require("./controllers/userProfileController");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -92,6 +93,33 @@ app.delete(
   "/api/messages/:id",
   authMiddleware.verifyToken,
   messageController.deleteMessage
+);
+
+// User profile Routes (protected)
+app.get(
+  "/api/user-profiles",
+  authMiddleware.verifyToken,
+  userProfileController.getAllUserProfiles
+);
+app.get(
+  "/api/user-profiles/:id",
+  authMiddleware.verifyToken,
+  userProfileController.getUserProfileById
+);
+app.post(
+  "/api/user-profiles",
+  authMiddleware.verifyToken,
+  userProfileController.createUserProfile
+);
+app.put(
+  "/api/user-profiles/:id",
+  authMiddleware.verifyToken,
+  userProfileController.updateUserProfile
+);
+app.delete(
+  "/api/user-profiles/:id",
+  authMiddleware.verifyToken,
+  userProfileController.deleteUserProfile
 );
 
 app.listen(port, () => {
